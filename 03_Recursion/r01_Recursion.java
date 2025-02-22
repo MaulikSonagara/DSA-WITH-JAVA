@@ -12,7 +12,6 @@ Stack Memory: Recursion stores function calls in a stack.
 
  public class r01_Recursion {
 
-
     public static void main(String[] args) {
         int N = 5; // Define the value of N
         System.out.print("Numbers from 1 to " + N + ": ");
@@ -27,13 +26,20 @@ Stack Memory: Recursion stores function calls in a stack.
         System.out.println("Print " + N + " to 1 : ");
         printNto1(N); // Call the recursive function to print N to 1
         System.out.println();
+
+        System.out.println("Print " + N + " to 1 (Backtrack) : ");
+        printnto1BackTrack(1,N); // Call the recursive function to print N to 1
+        System.out.println();
         
         System.out.println("Print sum of first " + N + " numbers : ");
         sumOfN(0, N); // call the recursive function to print sum of first N numbers
         System.out.println();
+
+        System.out.print("Print sum of first " + N + " numbers without extra parameter : ");
+        System.out.println(sumOfNwithoutExtraParam(N)); // call the recursive function to print sum of first N numbers
         
         System.out.println("Print factorial of " + N + " : ");
-        factOfN(1, N); // call the recursive function to print sum of first N numbers
+        factOfN(1, N); // call the recursive function to print Factorial of N
         System.out.println();
 
     }
@@ -66,6 +72,14 @@ Stack Memory: Recursion stores function calls in a stack.
         if(n==0) return;
         System.out.print(n + " ");
         printNto1(n-1);
+
+        //using recursion
+    }
+
+    public static void printnto1BackTrack(int i, int n){
+        if (i>n)return;
+        printnto1BackTrack(i+1, n);
+        System.out.print(i + " ");
     }
 
     public static void sumOfN(int sum,int n){
@@ -77,6 +91,15 @@ Stack Memory: Recursion stores function calls in a stack.
         sumOfN(sum, n-1);
     }
 
+    public static int sumOfNwithoutExtraParam(int n){
+        if (n == 0) {
+            return 0;
+        }
+
+        return n + sumOfNwithoutExtraParam(n-1);
+
+    }
+
     public static void factOfN(int ans,int n){
         if (n == 0) {
             System.out.println("Factorial : " + ans);
@@ -85,4 +108,5 @@ Stack Memory: Recursion stores function calls in a stack.
         ans *= n;
         factOfN(ans, n-1);
     }
+
 }
